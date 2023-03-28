@@ -6,6 +6,7 @@ build:
     - apt update
     - apt install android-tools-mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils bison flex -y --no-install-recommends
     - ln -sf python2.7 /usr/bin/python
+    - wget https://raw.githubusercontent.com/LineageOS/android_system_tools_mkbootimg/lineage-19.1/mkbootimg.py -O /usr/bin/mkbootimg
     - ./build.sh
   artifacts:
     paths:
