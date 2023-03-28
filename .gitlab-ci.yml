@@ -4,7 +4,7 @@ build:
   stage: build
   script:
     - apt update
-    - apt install android-tools-mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils bison -y --no-install-recommends
+    - apt install android-tools-mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils bison flex -y --no-install-recommends
     - ln -sf python2.7 /usr/bin/python
     - ./build.sh
   artifacts:
@@ -15,7 +15,7 @@ flashable:
   stage: build
   script:
     - apt update
-    - apt install -y imagemagick img2simg jq sudo wget xz-utils bison
+    - apt install -y imagemagick img2simg jq sudo wget xz-utils bison flex
     - DEVICE="$(source deviceinfo && echo $deviceinfo_codename)"
     - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "$DEVICE" ota
     - mkdir -p out
@@ -33,7 +33,7 @@ devel-flashable:
   stage: deploy
   script:
     - apt update
-    - apt install -y imagemagick img2simg jq sudo wget xz-utils bison
+    - apt install -y imagemagick img2simg jq sudo wget xz-utils bison flex
     - DEVICE="$(source deviceinfo && echo $deviceinfo_codename)"
     - ./build/prepare-fake-ota.sh out/device_${DEVICE}.tar.xz ota
     - mkdir -p out
