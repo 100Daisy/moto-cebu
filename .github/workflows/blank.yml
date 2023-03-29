@@ -3,7 +3,7 @@ name: Halium Generic Adaptation Build
 on:
   push:
     branches:
-      - halium-11
+      - halium-11.0
 
 jobs:
   build:
