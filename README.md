@@ -11,7 +11,7 @@ wifi\
 flashlight\
 vibra\
 camera\
-audio\
+audio\.
 fingerprint sensor\
 bluetooth\
 gps
