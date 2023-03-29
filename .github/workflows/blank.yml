@@ -1,0 +1,89 @@
+name: Halium Generic Adaptation Build
+
+on:
+  push:
+    branches:
+      - halium-11
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install android-tools-mkbootimg bc bison build-essential ca-certificates cpio curl flex git kmod libssl-dev libtinfo5 python2 sudo unzip wget xz-utils -y --no-install-recommends
+          sudo ln -sf python2.7 /usr/bin/python
+          sudo wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
+          git clone https://gitlab.com/ubports/community-ports/halium-generic-adaptation-build-tools -b halium-11 build
+      - name: Build Halium system image
+        run: |
+          cd build
+          ./build.sh
+        working-directory: ./build
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: halium-build-artifacts
+          path: |
+            build/out/boot.img
+            build/out/system.img
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'repository_dispatch'
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git img2simg jq sudo wget xz-utils
+          git clone https://gitlab.com/ubports/community-ports/halium-generic-adaptation-build-tools -b halium-11 build
+      - name: Build OTA
+        run: |
+          DEVICE="$(source deviceinfo && echo $deviceinfo_codename)"
+          ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "$DEVICE" ota
+        working-directory: ./build
+      - name: Build flashable system image
+        run: |
+          mkdir -p out
+          ./build/system-image-from-ota.sh ota/ubuntu_command out
+        working-directory: ./build
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: halium-flashable-artifacts
+          path: |
+            build/out/boot.img
+            build/out/system.img
+
+  devel-deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'repository_dispatch'
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git img2simg jq sudo wget xz-utils
+      - name: Clone adaptation build tools
+        run: |
+          git clone https://gitlab.com/ubports/community-ports/halium-generic-adaptation-build-tools -b halium-11 build
+      - name: Prepare fake OTA
+        run: |
+          DEVICE="$(source deviceinfo && echo $deviceinfo_codename)"
+          ./build/prepare-fake-ota.sh out/device_$DEVICE.tar.xz ota
+        working-directory: ./build
+      - name: Build development flashable system image
+        run: |
+          mkdir -p out
+          ./build/system-image-from-ota.sh ota/ubuntu_command out
+          mv out/rootfs.img out/ubuntu.img
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: halium-flashable-artifacts
+          path: |
+            build/out/boot.img
+            build/out/ubuntu.img
+
