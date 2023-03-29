@@ -17,8 +17,6 @@ deviceinfo_kernel_cmdline="console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x4
 
 deviceinfo_kernel_clang_compile="true"
 deviceinfo_kernel_use_dtc_ext="true"
-deviceinfo_has_recovery_partition="true"
-
 
 deviceinfo_generate_bootimg="true"
 deviceinfo_bootimg_qcdt="false"
