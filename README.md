@@ -2,7 +2,7 @@
 
 ## Current state:
 
-### Working:.
+### Working:..
 display\
 touchscreen\
 ril\.
