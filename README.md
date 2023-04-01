@@ -6,7 +6,7 @@
 display\
 touchscreen\
 ril\..
-mobile data\
+mobile data\..
 wifi\
 flashlight\
 vibra\.
