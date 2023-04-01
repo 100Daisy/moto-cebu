@@ -5,7 +5,7 @@
 ### Working:...
 display\
 touchscreen\
-ril\.
+ril\..
 mobile data\
 wifi\
 flashlight\
