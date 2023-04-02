@@ -19,3 +19,4 @@ gps
 ### Broken:
 nfc\
 hardware video acceleration
+.
