@@ -4,7 +4,7 @@
 
 ### Working:....
 display\
-touchscreen\
+touchscreen\.
 ril\..
 mobile data\..
 wifi\
