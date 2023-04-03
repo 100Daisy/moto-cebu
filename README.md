@@ -15,7 +15,7 @@ audio\.
 fingerprint sensor\
 bluetooth\
 gps
-
+asd
 ### Broken:
 nfc\
 hardware video acceleration
