@@ -13,7 +13,7 @@ vibra\.
 camera\
 audio\.
 fingerprint sensor\
-bluetooth\
+bluetooth\.
 gps
 asd
 ### Broken:
