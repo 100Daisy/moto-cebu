@@ -10,7 +10,7 @@ mobile data\..
 wifi\
 flashlight\
 vibra\.
-camera\
+camera\.
 audio\.
 fingerprint sensor\
 bluetooth\.
