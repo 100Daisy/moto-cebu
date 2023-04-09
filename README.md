@@ -14,7 +14,7 @@ camera\.
 audio\.
 fingerprint sensor\
 bluetooth\.
-gps
+gps.
 asd
 ### Broken:
 nfc\
