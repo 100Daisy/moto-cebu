@@ -3,7 +3,7 @@
 ## Current state:
 .
 ### Working:......
-display\
+display\..
 touchscreen\.
 ril\..
 mobile data\..
