@@ -19,4 +19,4 @@ asd
 ### Broken:
 nfc\
 hardware video acceleration
-.
+..
