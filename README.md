@@ -18,6 +18,6 @@ gps.
 asd
 ### Broken:
 nfc\
-hardware video acceleration
+hardware video acceleration.
 ..
 .
