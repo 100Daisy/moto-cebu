@@ -17,7 +17,7 @@ bluetooth\.
 gps.
 asd
 ### Broken:
-nfc\
+nfc\.
 hardware video acceleration.
 ..
 .
