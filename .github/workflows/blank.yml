@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - halium-11.0
+  workflow_dispatch:
+
 
 jobs:
   build:
@@ -58,4 +60,11 @@ jobs:
           name: halium-flashable-artifacts
           path: |
             out/*
+            out/boot.img
+      - name: Archive boot image
+        uses: actions/upload-artifact@v2
+        with:
+          name: halium-boot
+          path: |
+            out/boot.img
 
