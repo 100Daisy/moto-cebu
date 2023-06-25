@@ -67,4 +67,5 @@ jobs:
           name: halium-boot
           path: |
             out/boot.img
+            out/dtbo.img
 
